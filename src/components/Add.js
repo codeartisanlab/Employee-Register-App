@@ -12,15 +12,14 @@ class Add extends React.Component{
         this.submitForm=this.submitForm.bind(this);
     }
 
-    // Change Handler
+    // Input Change Handler
     changeHandler(event){
         this.setState({
             [event.target.name]:event.target.value
         });
-        console.log(this.state);
     }
 
-    // Form
+    // Submit Form
     submitForm(){
         fetch('http://127.0.0.1:8000/employee/',{
             method:'POST',
