@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './bootstrap.min.css';
 
 import List from './components/List';
