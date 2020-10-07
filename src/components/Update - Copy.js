@@ -1,5 +1,5 @@
 import React from 'react';
-class Update extends React.Component{
+class Add extends React.Component{
     constructor(){
         super();
         this.state={
@@ -10,6 +10,24 @@ class Update extends React.Component{
         }
         this.changeHandler=this.changeHandler.bind(this);
         this.submitForm=this.submitForm.bind(this);
+    }
+
+    fetchData(){
+        var id=this.props.match.params.id;
+        fetch('http://127.0.0.1:8000/employee/'+id)
+        .then(response=>response.json())
+        .then((data)=>{
+            this.setState({
+                full_name:data.full_name,
+                email:data.email,
+                contact:data.contact,
+                address:data.address
+            });
+        });
+    }
+
+    componentDidMount(){
+        this.fetchData();
     }
 
     // Input Change Handler
@@ -31,24 +49,6 @@ class Update extends React.Component{
         })
         .then(response=>response.json())
         .then((data)=>console.log(data));
-    }
-
-    fetchData(){
-        var id=this.props.match.params.id;
-        fetch('http://127.0.0.1:8000/employee/'+id)
-        .then(response=>response.json())
-        .then((data)=>{
-            this.setState({
-                full_name:data.full_name,
-                email:data.email,
-                contact:data.contact,
-                address:data.address
-            });
-        });
-    }
-
-    componentDidMount(){
-        this.fetchData();
     }
 
     render(){
@@ -90,4 +90,4 @@ class Update extends React.Component{
     }
 }
 
-export default Update;
+export default Add;
