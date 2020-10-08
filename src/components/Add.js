@@ -37,7 +37,6 @@ class Add extends React.Component{
             contact:'',
             address:''
         });
-
     }
 
     render(){

@@ -23,6 +23,19 @@ class List extends React.Component{
         this.fetchData();
     }
 
+    deleteData(id){
+        fetch('http://127.0.0.1:8000/employee/'+id+'/',{
+            method:'DELETE',
+            body:JSON.stringify(this.state),
+        })
+        .then(response=>response)
+        .then((data)=>{
+            if(data){
+                this.fetchData();
+            }
+        });
+    }
+
     render(){
         const empData=this.state.data;
         const rows=empData.map((emp)=>
@@ -33,7 +46,7 @@ class List extends React.Component{
                 <td>{emp.address}</td>
                 <td>
                     <Link to={'update/'+emp.id} className="btn btn-info mr-2">Update</Link>
-                    <button className="btn btn-danger">Delete</button>
+                    <button onClick={()=>this.deleteData(emp.id)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
         );
